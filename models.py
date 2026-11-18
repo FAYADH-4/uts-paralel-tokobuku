@@ -21,6 +21,10 @@ class BookUpdate(BookBase):
 
 class Book(BookBase):
     id: int
+    # Sengaja tanpa ge=0 di model respon: biar stok negatif (overselling)
+    # bisa terbaca saat demo race condition tanpa lock.
+    # Input (BookCreate/BookUpdate) tetap ge=0.
+    stok: int
 
 
 class TransactionCreate(BaseModel):
